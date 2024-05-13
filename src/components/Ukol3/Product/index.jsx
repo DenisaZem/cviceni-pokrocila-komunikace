@@ -1,8 +1,14 @@
 import './style.css';
+ 
+export const Product = ({ image, name, price, onAddToCart }) => {
 
-export const Product = ({ image, name, price }) => {
+const handleClick =()=>{
+  onAddToCart(price)
+
+}
+
   return (
-    <div className="product">
+    <div className="product" onClick={handleClick}>
       <img src={image} className="product__image" />
       <div className="product__body">
         {name}: {price} Kč <br />

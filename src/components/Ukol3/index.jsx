@@ -1,4 +1,5 @@
-import { Product } from "./Product";
+import { Product } from "./Product"; 
+import { useState } from "react";
 
 /*
   Zadání: Budeme chtít, aby uživatel mohl klikat na kousky oblečení a u každého viděl, kolik
@@ -17,16 +18,23 @@ import { Product } from "./Product";
 */
 
 export const Ukol3 = () => {
+
+  const [count, setCount] = useState(0)
+
+  const so =(price)=>{
+    setCount(count+price)
+  }
+
   return (
     <>
       <p>
-        Cena: <strong>0 Kč</strong>
+        Cena: <strong>{count} Kč</strong>
       </p>
       <div className="products">
-        <Product image="/clothing/item01.jpg" name="Bunda" price={500} />
-        <Product image="/clothing/item02.jpg" name="Halenka" price={1200} />
-        <Product image="/clothing/item03.jpg" name="Svetr" price={1500} />
-        <Product image="/clothing/item04.jpg" name="Mikina" price={800} />
+        <Product onAddToCart={so} image="/clothing/item01.jpg" name="Bunda" price={500} />
+        <Product onAddToCart={so} image="/clothing/item02.jpg" name="Halenka" price={1200} />
+        <Product onAddToCart={so} image="/clothing/item03.jpg" name="Svetr" price={1500} />
+        <Product onAddToCart={so} image="/clothing/item04.jpg" name="Mikina" price={800} />
       </div>
     </>
   );

@@ -1,11 +1,12 @@
 import { SwitchButton } from './SwitchButton';
+import { useState } from 'react';
 import './style.css';
 
-/*
+/* 
   Zadání: V tomto úkolu začneme zjednodušnou komunikací mezi komponentami. 
 
   Krok 1: Založte stav, který bude udávat jestli je žárovka zapnutá nebo vypnutá, například 
-    `bulbOn` a `setBulbOn`. Podle stavu nastavte třídu `bulb--on` na žárovku.
+    `bulbOn` a `setBulbOn`. Podle stavu nastavte třídu `bulb--on` na žárovku. 
 
   Krok 2: Přidejte komponentě `SwitchButton` novou prop `onSwitch`, která bude očekávat funkci, 
     která se zavolá při kliknutí na tlačítko a bude měnit stav žárovky. `onSwitch` se nebude
@@ -29,11 +30,20 @@ import './style.css';
     Pokud uživatel chce žárovku vypnout, tak se ho neptejte a žárovku rovnou vypněte.
 */
 
+
 export const Ukol1 = () => {
+  const [bulbOn, setBulbOn] = useState(false);
+
+  const handleSwitch = () => {
+    setBulbOn(!bulbOn);
+  };
+
   return (
     <>
-      <div className="bulb bulb--on" />
-      <SwitchButton label="Vypnout" />
+      <div className={`bulb ${bulbOn ? 'bulb--on' : ''}`} />
+      <SwitchButton onSwitch={handleSwitch} label={bulbOn ? 'Vypnout' : 'Zapnout'} />
     </>
   );
 };
+
+
